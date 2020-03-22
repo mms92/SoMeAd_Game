@@ -39,7 +39,7 @@
             fwrite( $file, $login."\n" );
             fwrite( $file, $pass."\n" );
 
-            $bdd = new SQL( "127.0.0.1", $login, $pass );
+            $bdd = new SQL( "127.0.0.1", $login, $pass, NULL );
             
             $result = $bdd->query(
                 "show databases",

@@ -18,7 +18,7 @@ class SQL {
         $password = $this->password;
         $host = $this->host;
         $db = $this->database;
-        $dsn = "mysql:host=$host".( empty($db) ? "" : ";dbname=$db" )
+        $dsn = "mysql:host=$host".( empty($db) ? "" : ";dbname=$db" );
         try {
         	$this->connection = new PDO($dsn, $username, $password, array(
                 PDO::ATTR_PERSISTENT => true
