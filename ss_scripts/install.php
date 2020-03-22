@@ -12,6 +12,7 @@
     </form method="post">
     
     <?php
+        echo "Request Method : ".$_SERVER["REQUEST_METHOD"]
         if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 
             require_once "lib/database.php";
