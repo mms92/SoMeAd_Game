@@ -6,13 +6,13 @@
     <title>SoMeAd_Game Installation Page</title>
 </head>
 <body>
-    <form>
+    <form action="_self" method="post">
         <label for="login">Database Username</label>
         <input id ="login" type="text" name="login"><br>
         <label for="pass">Database Password</label>
         <input id ="pass" type="password" name="pass"><br>
         <input type="submit" value="Installer"><br><br>
-    </form method="POST">
+    </form>
     
     <?php
         echo "Request Method : ".$_SERVER["REQUEST_METHOD"];
