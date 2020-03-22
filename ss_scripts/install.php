@@ -12,10 +12,10 @@
         <label for="pass">Database Password</label>
         <input id ="pass" type="password" name="pass"><br>
         <input type="submit" value="Installer"><br><br>
-    </form method="post">
+    </form method="POST">
     
     <?php
-        echo "Request Method : ".$_SERVER["REQUEST_METHOD"]
+        echo "Request Method : ".$_SERVER["REQUEST_METHOD"];
         if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 
             require_once "lib/database.php";
