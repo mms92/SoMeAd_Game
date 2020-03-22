@@ -10,7 +10,7 @@
         <input id ="pass" type="password" name="pass"><br>
         <input type="submit" value="Installer"><br><br>
     </form method="post">
-    <!--
+    
     <?php
         if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 
@@ -46,7 +46,6 @@
             }
         }
     ?>
-    -->
 </body>
 </html>
 
