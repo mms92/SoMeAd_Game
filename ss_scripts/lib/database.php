@@ -5,13 +5,13 @@ class SQL {
 	private $host;
 	private $database;
     private $connection;
-
+    private $operational;
     public function __construct( $host, $user, $pass, $database ) {
     	$this->username = $user;
     	$this->password = $pass;
     	$this->host = $host;
     	$this->database = $database;
-        $this->operational = $this->connect()
+        $this->operational = $this->connect();
     }
     private function connect() {
         $username = $this->username;
@@ -24,11 +24,11 @@ class SQL {
                 PDO::ATTR_PERSISTENT => true
             ));
             $this->connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-            return true
+            return true;
         }
         catch ( PDOException $e ) {
             echo "Connection to MySQL failed: ".$e->getMessage();
-            return false
+            return false;
         }
     }
     public function query($sql, $args){
