@@ -6,7 +6,7 @@
     <title>SoMeAd_Game Installation Page</title>
 </head>
 <body>
-    <form action="_self" method="post">
+    <form method="post">
         <label for="login">Database Username</label>
         <input id ="login" type="text" name="login"><br>
         <label for="pass">Database Password</label>
