@@ -12,33 +12,34 @@
         </form method="post">
         <?php
 
-            if ( $_SERVER["REQUEST_METHOD"] != "POST" ) return;
+            if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 
-            require_once "lib/database.php"
+                require_once "lib/database.php"
 
-            $login = $_REQUEST["login"]
-            $pass = $_REQUEST["pass"]
+                $login = $_REQUEST["login"]
+                $pass = $_REQUEST["pass"]
 
-            if ( empty($login) ) 
-            {
-                die("login is blank")
-            }
-            if ( empty($pass) ) 
-            {
-                die("password is blank")
-            }
-            $file = fopen("config/credential.cfg") or die("credential.cfg could not be created, make sure the php application have right to write in ss/config/ folder of the project")
-            fwrite( $file, $login."\n" )
-            fwrite( $file, $pass."\n" )
+                if ( empty($login) ) 
+                {
+                    die("login is blank")
+                }
+                if ( empty($pass) ) 
+                {
+                    die("password is blank")
+                }
+                $file = fopen("config/credential.cfg") or die("credential.cfg could not be created, make sure the php application have right to write in ss/config/ folder of the project")
+                fwrite( $file, $login."\n" )
+                fwrite( $file, $pass."\n" )
 
-            $bdd = new database( "127.0.0.1", $login, $pass )
-            
-            $result = $bdd->query(
-                "show databases",
-                array()
-            )
-            foreach ($result as $key => $value) {
-                echo $key." => ".$value
+                $bdd = new database( "127.0.0.1", $login, $pass )
+                
+                $result = $bdd->query(
+                    "show databases",
+                    array()
+                )
+                foreach ($result as $key => $value) {
+                    echo $key." => ".$value
+                }
             }
         ?>
     </body>
