@@ -35,7 +35,7 @@ class SQL {
         $stmt->execute($args);
         return $stmt;
     }
-    public function getLeaderBoard( $name, $score )
+    public function getLeaderBoardAround( $name, $score )
     {
         if ( !$operational ) return NULL;
         $stmt = $this->query(  "SELECT @rank:= 0;
