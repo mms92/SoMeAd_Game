@@ -2,22 +2,19 @@
 class SQL {
 	private $username;
 	private $password;
-	private $host;
 	private $database;
     private $connection;
     private $operational;
     public function __construct( $host, $user, $pass, $database ) {
     	$this->username = $user;
     	$this->password = $pass;
-    	$this->host = $host;
-    	$this->database = $database;
         $this->operational = $this->connect();
     }
     private function connect() {
         $username = $this->username;
         $password = $this->password;
-        $host = $this->host;
-        $db = $this->database;
+        $host = "localhost";
+        $db = "SoMeAd_Game";
         $dsn = "mysql:host=$host".( empty($db) ? "" : ";dbname=$db" );
         try {
         	$this->connection = new PDO($dsn, $username, $password, array(
@@ -37,6 +34,30 @@ class SQL {
         $stmt = $connection->prepare($sql);
         $stmt->execute($args);
         return $stmt;
+    }
+    public function getLeaderBoard( $name, $score )
+    {
+        if ( !$operational ) return NULL;
+        $stmt = $this->query(  "SELECT @rank:= 0;
+                                SELECT @targetRank:= ( SELECT s.rank FROM ( 
+                                    SELECT @rank:= @rank + 1 as rank, t.* FROM (
+                                    SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
+                                    ) t
+                                ) s WHERE s.score=? AND s.name=?
+                                );
+                                SELECT @rank:= 0;                  
+                                SELECT * FROM (
+                                SELECT @rank:= @rank + 1 as rank, s.* FROM (
+                                    SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
+                                ) s
+                                ) t WHERE t.rank BETWEEN @targetRank-2 AND @targetRank+2 OR t.rank<='5';"
+                                , array($name,$score))
+        return $stmt
+        
+    }
+    public function addScore( $name, $score )
+    {
+        $this->query( "INSERT INTO leaderboard ( name, score ) VALUES ( ?, ? );", array( $name, $score ) )
     }
 }
 ?>
