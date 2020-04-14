@@ -7,9 +7,10 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     echo json_encode( $segment );
     $db = new SQL( "SoMeAd","abc123" );
     $results = $db->getLeaderBoard();
-    if ($result->num_rows > 0) {
+    echo $results
+    if ($results->num_rows > 0) {
         // output data of each row
-        while($row = $result->fetch_assoc()) {
+        while($row = $results->fetch_assoc()) {
             echo "id: " . $row["rank"]. " - Name: " . $row["name"]. " Score: " . $row["score"]. "<br>";
         }
     } else {
