@@ -5,7 +5,7 @@ class SQL {
 	private $database;
     private $connection;
     private $operational;
-    public function __construct( $host, $user, $pass, $database ) {
+    public function __construct( $user, $pass ) {
     	$this->username = $user;
     	$this->password = $pass;
         $this->operational = $this->connect();
@@ -52,6 +52,19 @@ class SQL {
                                 ) s
                                 ) t WHERE t.rank BETWEEN @targetRank-2 AND @targetRank+2 OR t.rank<='5';"
                                 , array($name,$score))
+        return $stmt
+        
+    }
+    public function getLeaderBoard( )
+    {
+        if ( !$operational ) return NULL;
+        $stmt = $this->query(  "SELECT @rank:= 0;
+                                SELECT * FROM (
+                                SELECT @rank:= @rank + 1 as rank, s.* FROM (
+                                    SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
+                                ) s
+                                ) t WHERE t.rank<='10';"
+                                , array())
         return $stmt
         
     }
