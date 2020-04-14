@@ -58,7 +58,7 @@ class SQL {
     public function getLeaderBoard( )
     {
         if ( !$operational ) return NULL;
-        $stmt = $this->query(  "SELECT @rank:= 0;
+        $stmt = $this->connection->query(  "SELECT @rank:= 0;
                                 SELECT * FROM (
                                 SELECT @rank:= @rank + 1 as rank, s.* FROM (
                                     SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
