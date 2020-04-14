@@ -6,7 +6,14 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     $segment = explode("/", $url);
     echo json_encode( $segment );
     $db = new SQL( "SoMeAd","abc123" );
-    echo $db->getLeaderBoard();
-    
+    $results = $db->getLeaderBoard();
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            echo "id: " . $row["rank"]. " - Name: " . $row["name"]. " Score: " . $row["score"]. "<br>";
+        }
+    } else {
+        echo "0 results";
+    }
 }
 ?>

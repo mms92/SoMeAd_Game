@@ -43,7 +43,7 @@ class SQL {
                                     SELECT @rank:= @rank + 1 as rank, t.* FROM (
                                     SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
                                     ) t
-                                ) s WHERE s.score=? AND s.name=?
+                                ) s WHERE s.score='?' AND s.name='?'
                                 );
                                 SELECT @rank:= 0;                  
                                 SELECT * FROM (
