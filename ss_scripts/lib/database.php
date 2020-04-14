@@ -51,8 +51,8 @@ class SQL {
                                     SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
                                 ) s
                                 ) t WHERE t.rank BETWEEN @targetRank-2 AND @targetRank+2 OR t.rank<='5';"
-                                , array($name,$score))
-        return $stmt
+                                , array($name,$score));
+        return $stmt,
         
     }
     public function getLeaderBoard( )
@@ -64,13 +64,13 @@ class SQL {
                                     SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
                                 ) s
                                 ) t WHERE t.rank<='10';"
-                                , array())
-        return $stmt
+                                , array());
+        return $stmt;
         
     }
     public function addScore( $name, $score )
     {
-        $this->query( "INSERT INTO leaderboard ( name, score ) VALUES ( ?, ? );", array( $name, $score ) )
+        $this->query( "INSERT INTO leaderboard ( name, score ) VALUES ( ?, ? );", array( $name, $score ) );
     }
 }
 ?>
