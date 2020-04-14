@@ -7,7 +7,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     echo json_encode( $segment );
     $db = new SQL( "SoMeAd","abc123" );
     $results = $db->getLeaderBoard();
-    echo $results
+    echo $results;
     if ($results->num_rows > 0) {
         // output data of each row
         while($row = $results->fetch_assoc()) {
