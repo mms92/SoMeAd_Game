@@ -52,7 +52,7 @@ class SQL {
                                 ) s
                                 ) t WHERE t.rank BETWEEN @targetRank-2 AND @targetRank+2 OR t.rank<='5';"
                                 , array($name,$score));
-        return $stmt,
+        return $stmt;
         
     }
     public function getLeaderBoard( )
