@@ -55,11 +55,10 @@ class SQL {
                                 ) t WHERE t.rank BETWEEN @targetRank-2 AND @targetRank+2 OR t.rank<='5';"
                                 , array($name,$score));
         return $stmt;
-        
     }
     public function getLeaderBoard( )
     {
-        if ( $operational == 0 ) return NULL;
+        if ( $this->operational == 0 ) return NULL;
         $stmt = $this->connection->query(  "SELECT @rank:= 0;
                                 SELECT * FROM (
                                 SELECT @rank:= @rank + 1 as rank, s.* FROM (
