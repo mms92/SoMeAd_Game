@@ -65,7 +65,7 @@ class SQL {
                                     SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
                                 ) s
                                 ) t WHERE t.rank<='10';"
-                                , array());
+        );
         return $stmt;
         
     }
