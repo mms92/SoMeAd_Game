@@ -9,6 +9,7 @@ class SQL {
     	$this->username = $user;
     	$this->password = $pass;
         $this->operational = $this->connect();
+        echo "operation = $this->operational";
     }
     private function connect() {
         $username = $this->username;
