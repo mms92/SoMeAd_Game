@@ -21,15 +21,15 @@ class SQL {
                 PDO::ATTR_PERSISTENT => true
             ));
             $this->connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-            return true;
+            return 1;
         }
         catch ( PDOException $e ) {
             echo "Connection to MySQL failed: ".$e->getMessage();
-            return false;
+            return 0;
         }
     }
     public function query($sql, $args){
-        if ( !$operational ) return NULL;
+        if ( $operational == 0 ) return NULL;
         $connection = $this->connection;
         $stmt = $connection->prepare($sql);
         $stmt->execute($args);
@@ -37,7 +37,7 @@ class SQL {
     }
     public function getLeaderBoardAround( $name, $score )
     {
-        if ( !$operational ) return NULL;
+        if ( $operational == 0) return NULL;
         $stmt = $this->query(  "SELECT @rank:= 0;
                                 SELECT @targetRank:= ( SELECT s.rank FROM ( 
                                     SELECT @rank:= @rank + 1 as rank, t.* FROM (
