@@ -9,7 +9,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     $results = $db->getLeaderBoard();
     var_dump( $results );
     echo "<br/>";
-    if ($results->num_rows > 0) {
+    if ($results != NULL) {
         // output data of each row
         while($row = $results->fetch_assoc()) {
             echo "id: " . $row["rank"]. " - Name: " . $row["name"]. " Score: " . $row["score"]. "<br>";
