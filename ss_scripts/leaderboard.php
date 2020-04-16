@@ -4,10 +4,10 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     require_once "lib/database.php";
     $url = $_SERVER["PHP_SELF"];
     $segment = explode("/", $url);
-    echo json_encode( $segment );
+    echo json_encode( $segment )."<br/>";
     $db = new SQL( "SoMeAd","abc123" );
     $results = $db->getLeaderBoard();
-    echo $results."<br/>";
+    echo gettype($results)."<br/>";
     if ($results->num_rows > 0) {
         // output data of each row
         while($row = $results->fetch_assoc()) {
