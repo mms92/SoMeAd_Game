@@ -21,6 +21,7 @@ class SQL {
                 PDO::ATTR_PERSISTENT => true
             ));
             $this->connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+            echo "Connection Success";
             return 1;
         }
         catch ( PDOException $e ) {
@@ -57,7 +58,7 @@ class SQL {
     }
     public function getLeaderBoard( )
     {
-        if ( !$operational ) return NULL;
+        if ( $operational == 0 ) return NULL;
         $stmt = $this->connection->query(  "SELECT @rank:= 0;
                                 SELECT * FROM (
                                 SELECT @rank:= @rank + 1 as rank, s.* FROM (
