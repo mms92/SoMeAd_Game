@@ -88,7 +88,7 @@ class SQL {
         $stmt = $this->query(
             "SELECT id FROM session WHERE id='?'",
             array( $id )
-        )
+        );
         var_dump( $stmt->rowCount() );
     }
 
