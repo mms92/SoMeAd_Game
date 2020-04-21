@@ -83,7 +83,7 @@ class SQL {
             "SELECT id FROM session WHERE id='?'",
             array( $id )
         );
-        var_dump( $stmt->rowCount() );
+        var_dump( $stmt->fetchAll() );
     }
 
     public function addScore( $name, $score )
