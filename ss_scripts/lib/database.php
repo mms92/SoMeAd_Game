@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 class SQL {
 	private $username;
 	private $password;
@@ -70,6 +71,27 @@ class SQL {
         return $stmt;
         
     }
+
+    public function beginSession( $name, $avatar )
+    {
+        $id = "";
+        for ($i=0; $i < 16; $i++) { 
+            if ( rand(0,1) > 0 )
+            {
+                $id = $id.sprintf("",rand(65,90));
+            }
+            else
+            {
+                $id = $id.sprintf("",rand(97,122));
+            }
+        }
+        $stmt = $this->query(
+            "SELECT id FROM session WHERE id='?'",
+            array( $id )
+        )
+        var_dump( $stmt->rowCount() );
+    }
+
     public function addScore( $name, $score )
     {
         $this->query( "INSERT INTO leaderboard ( name, score ) VALUES ( ?, ? );", array( $name, $score ) );
