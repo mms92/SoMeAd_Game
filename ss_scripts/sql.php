@@ -46,7 +46,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
         }
         elseif ( isset($_REQUEST["id"]) )
         {
-            echo json_encode( $db->getSession($_REQUEST["id"][0]) );
+            echo json_encode( $db->getSession($_REQUEST["id"])[0] );
         }
     }
 }
