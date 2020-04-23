@@ -91,7 +91,7 @@ class SQL {
     public function getSession( $id )
     {
         return $this->query( 
-            "SELECT name,avatar,score from leaderboard WHERE leaderboard.id='?';",
+            "SELECT id,name,avatar,score FROM leaderboard WHERE leaderboard.id='?';",
             array( $id )
         )->fetchAll();
     }
