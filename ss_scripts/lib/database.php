@@ -39,14 +39,14 @@ class SQL {
     public function getLeaderBoardAround( $id )
     {
         if ( $this->operational == 0) return NULL;
-        $this->connection->exec(  "SELECT @rank:= 0;" );
-        $this->connection->exec(  "SELECT @targetRank:= ( SELECT s.rank FROM ( 
+        $this->connection->query(  "SELECT @rank:= 0;" )->fetchAll();
+        $this->connection->query(  "SELECT @targetRank:= ( SELECT s.rank FROM ( 
                             SELECT @rank:= @rank + 1 as rank, t.* FROM (
                             SELECT id FROM leaderboard ORDER BY score DESC, name ASC
                             ) t
                         ) s WHERE s.id='$id'
-                        );");
-        $this->connection->exec(  "SELECT @rank:= 0;" );
+                        );")->fetchAll();
+        $this->connection->query(  "SELECT @rank:= 0;" )->fetchAll();
         return $this->query(  "SELECT * FROM (
                                 SELECT @rank:= @rank + 1 as rank, s.* FROM (
                                     SELECT name, avatar, score FROM leaderboard ORDER BY score DESC, name ASC
@@ -57,7 +57,7 @@ class SQL {
     public function getLeaderBoard( )
     {
         if ( $this->operational == 0 ) return NULL;
-        $this->connection->exec(  "SELECT @rank:= 0;" );
+        $this->connection->query(  "SELECT @rank:= 0;" )->fetchAll();
         return $this->query("SELECT * FROM ( SELECT @rank:= @rank + 1 as rank, s.* FROM ( SELECT name, avatar, score FROM leaderboard ORDER BY score DESC, name ASC ) s) t WHERE t.rank<='10';"
                                 , array() )->fetchAll();
     }
