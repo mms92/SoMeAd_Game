@@ -10,7 +10,6 @@ class SQL {
     	$this->username = $user;
     	$this->password = $pass;
         $this->operational = $this->connect();
-        echo "operation = $this->operational";
     }
     private function connect() {
         $username = $this->username;
@@ -23,7 +22,6 @@ class SQL {
                 PDO::ATTR_PERSISTENT => true
             ));
             $this->connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-            echo "Connection Success";
             return 1;
         }
         catch ( PDOException $e ) {
@@ -64,7 +62,6 @@ class SQL {
         $stmt = $this->query("SELECT * FROM ( SELECT @rank:= @rank + 1 as rank, s.* FROM ( SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC ) s) t WHERE t.rank<='10';"
                                 , array() );
         return $stmt;
-        
     }
 
     public function beginSession( $name, $avatar )
@@ -84,7 +81,6 @@ class SQL {
             "SELECT id FROM session WHERE id='?'",
             array( $id )
         );
-        var_dump( $stmt->fetchAll() );
     }
 
     public function addScore( $name, $score )
