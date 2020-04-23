@@ -47,13 +47,12 @@ class SQL {
                         ) s WHERE s.id='$id'
                         );");
         $this->connection->exec(  "SELECT @rank:= 0;" );
-        $stmt = $this->query(  "SELECT * FROM (
+        return $this->query(  "SELECT * FROM (
                                 SELECT @rank:= @rank + 1 as rank, s.* FROM (
                                     SELECT name, avatar, score FROM leaderboard ORDER BY score DESC, name ASC
                                 ) s
                                 ) t WHERE t.rank BETWEEN @targetRank-2 AND @targetRank+2 OR t.rank<='5';"
-                                , array());
-        return $stmt;
+                                , array())->fetchAll();
     }
     public function getLeaderBoard( )
     {
