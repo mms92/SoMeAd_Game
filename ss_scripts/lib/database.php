@@ -41,15 +41,15 @@ class SQL {
     public function getLeaderBoardAround( $name, $score )
     {
         if ( $this->operational == 0) return NULL;
-        $stmt = $this->query(  "SELECT @rank:= 0;
-                                SELECT @targetRank:= ( SELECT s.rank FROM ( 
-                                    SELECT @rank:= @rank + 1 as rank, t.* FROM (
-                                    SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
-                                    ) t
-                                ) s WHERE s.score='?' AND s.name='?'
-                                );
-                                SELECT @rank:= 0;                  
-                                SELECT * FROM (
+        $this->query(  "SELECT @rank:= 0;", array() );
+        $this->query(  "SELECT @targetRank:= ( SELECT s.rank FROM ( 
+                            SELECT @rank:= @rank + 1 as rank, t.* FROM (
+                            SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
+                            ) t
+                        ) s WHERE s.score='?' AND s.name='?'
+                        );",array() );
+        $this->query(  "SELECT @rank:= 0;",array());
+        $stmt = $this->query(  "SELECT * FROM (
                                 SELECT @rank:= @rank + 1 as rank, s.* FROM (
                                     SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
                                 ) s
@@ -60,7 +60,8 @@ class SQL {
     public function getLeaderBoard( )
     {
         if ( $this->operational == 0 ) return NULL;
-        $stmt = $this->query(  "SELECT @rank:= 0; SELECT * FROM ( SELECT @rank:= @rank + 1 as rank, s.* FROM ( SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC ) s) t WHERE t.rank<='10';"
+        $this->query(  "SELECT @rank:= 0;",array() );
+        $stmt = $this->query("SELECT * FROM ( SELECT @rank:= @rank + 1 as rank, s.* FROM ( SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC ) s) t WHERE t.rank<='10';"
                                 , array() );
         return $stmt;
         
