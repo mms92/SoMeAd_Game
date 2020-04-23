@@ -47,7 +47,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
         elseif ( isset($_REQUEST["id"]) )
         {
             echo $_REQUEST["id"];
-            echo $db->getSession($_REQUEST["id"]);
+            var_dump( $db->getSession($_REQUEST["id"]) );
         }
     }
 }
