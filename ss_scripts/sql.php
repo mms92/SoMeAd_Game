@@ -31,17 +31,15 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
             {
                 if ( $subAction == "getQuestion" )
                 {
-                    $question = $db->getQuestion($_REQUEST["id"]);
-                    var_dump($question);
+                    echo json_encode($db->getQuestion($_REQUEST["id"]));
                 }
                 if ( $subAction == "getAnswers" )
                 {
-                    $answers = $db->getAnswers($_REQUEST["id"]);
-                    var_dump($answers);
+                    echo json_encode( $db->getAnswers($_REQUEST["id"]));
                 }
                 if ( $subAction == "verifyAnswer" && isset($_REQUEST["answersId"] ) )
                 {
-                    //echo json_encode($db->answerCheck($_REQUEST["id"],$_REQUEST["answersId"]));
+                    echo json_encode($db->answerCheck($_REQUEST["id"],$_REQUEST["answersId"]));
                 }
             }
         }
