@@ -35,6 +35,7 @@ class SQL {
         $stmt = $connection->prepare($sql);
         echo $stmt->queryString;
         $stmt->execute($args);
+        echo $stmt->queryString;
         return $stmt;
     }
     public function getLeaderBoardAround( $id )
