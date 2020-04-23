@@ -10,7 +10,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     echo "<br/>";
     if ($results != NULL) {
         // output data of each row
-        while($row = $results->fetchAll()) {
+        while($row = $results->fetch_assoc()) {
             echo "id: " . $row["rank"]. " - Name: " . $row["name"]. " Score: " . $row["score"]. "<br>";
         }
     } else {
