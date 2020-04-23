@@ -33,9 +33,7 @@ class SQL {
         if ( $this->operational == 0 ) return NULL;
         $connection = $this->connection;
         $stmt = $connection->prepare($sql);
-        echo $stmt->queryString;
         $stmt->execute($args);
-        echo $stmt->queryString;
         return $stmt;
     }
     public function getLeaderBoardAround( $id )
@@ -85,7 +83,7 @@ class SQL {
                 array( $id )
             );
             $result = $stmt->fetchAll();
-        } while ($result->count() > 0);
+        } while (count( $result ) > 0);
         $this->connection->exec("INSERT INTO leaderboard ( id, name, avatar ) VALUES ( $id,$name,$avatar )");
         return $id;
     }
