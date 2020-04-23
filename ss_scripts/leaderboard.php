@@ -10,7 +10,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     echo "<br/>";
     if ($results != NULL) {
         $results_array = $results->fetchAll();
-        echo json_encode( $results_array )
+        echo json_encode( $results_array );
     } else {
         echo "0 results";
     }
