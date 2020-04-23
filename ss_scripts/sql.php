@@ -5,6 +5,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     header('Content-Type: application/json');
     $url = $_SERVER["PHP_SELF"];
     $segment = explode("/", $url);
+    print_r( $segment );
     $db = new SQL( "SoMeAd","abc123" );
     $action = $segment[ 4 ];
     if ( $action == "leaderboard" )
