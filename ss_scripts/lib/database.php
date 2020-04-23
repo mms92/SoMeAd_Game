@@ -90,10 +90,11 @@ class SQL {
 
     public function getSession( $id )
     {
-        return $this->query( 
-            "SELECT id,name,avatar,score FROM leaderboard WHERE leaderboard.id='?';",
+        $stmt = $this->query( 
+            "SELECT * FROM leaderboard WHERE leaderboard.id='?';",
             array( $id )
-        )->fetchAll();
+        );
+        return $stmt->fetchAll();
     }
 
     public function getQuestion($id)
