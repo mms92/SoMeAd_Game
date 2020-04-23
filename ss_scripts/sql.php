@@ -23,11 +23,11 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
         if ( $segment->count() == 6 )
         {
             $subAction = $segment[ 5 ];
-            if ( $subAction == "begin" && isset($_REQUEST["name"] && $_REQUEST["avatar"] ) )
+            if ( $subAction == "begin" && isset($_REQUEST["name"]) && isset($_REQUEST["avatar"] ) )
             {
                 echo json_encode($db->beginSession($_REQUEST["name"],$_REQUEST["avatar"]));
             }
-            if ( isset( $_REQUEST["id"] )
+            if ( isset( $_REQUEST["id"] ) )
             {
                 if ( $subAction == "getQuestion" )
                 {
@@ -37,7 +37,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
                 {
                     echo json_encode($db->getAnswer($_REQUEST["id"]));
                 }
-                if ( $subAction == "verifyAnswer" && isset($_REQUEST["answersId"] )
+                if ( $subAction == "verifyAnswer" && isset($_REQUEST["answersId"] ) )
                 {
                     echo json_encode($db->answerCheck($_REQUEST["id"],$_REQUEST["answersId"]));
                 }
