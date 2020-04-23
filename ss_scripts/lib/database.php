@@ -84,7 +84,7 @@ class SQL {
             );
             $result = $stmt->fetchAll();
         } while (count( $result ) > 0);
-        $this->connection->exec("INSERT INTO leaderboard ( id, name, avatar ) VALUES ( $id,$name,$avatar )");
+        $this->connection->exec("INSERT INTO leaderboard ( id, name, avatar ) VALUES ( '$id','$name','$avatar' );");
         return $id;
     }
 
