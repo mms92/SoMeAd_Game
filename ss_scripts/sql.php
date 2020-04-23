@@ -22,30 +22,30 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     {
         if ( $segment->count() == 6 )
         {
-            $subAction = $segment[ 5 ]
+            $subAction = $segment[ 5 ];
             if ( $subAction == "begin" && isset($_REQUEST["name"] && $_REQUEST["avatar"] ) )
             {
-                echo json_encode($db->beginSession($_REQUEST["name"],$_REQUEST["avatar"]))
+                echo json_encode($db->beginSession($_REQUEST["name"],$_REQUEST["avatar"]));
             }
             if ( isset( $_REQUEST["id"] )
             {
                 if ( $subAction == "getQuestion" )
                 {
-                    echo json_encode($db->getQuestion($_REQUEST["id"]))
+                    echo json_encode($db->getQuestion($_REQUEST["id"]));
                 }
                 if ( $subAction == "getAnswer" )
                 {
-                    echo json_encode($db->getAnswer($_REQUEST["id"]))
+                    echo json_encode($db->getAnswer($_REQUEST["id"]));
                 }
                 if ( $subAction == "verifyAnswer" && isset($_REQUEST["answersId"] )
                 {
-                    echo json_encode($db->answerCheck($_REQUEST["id"],$_REQUEST["answersId"]))
+                    echo json_encode($db->answerCheck($_REQUEST["id"],$_REQUEST["answersId"]));
                 }
             }
         }
         else
         {
-            echo json_encode($db->getSession($_REQUEST["id"]))
+            echo json_encode($db->getSession($_REQUEST["id"]));
         }
     }
 }
