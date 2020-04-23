@@ -36,30 +36,30 @@ class SQL {
         $stmt->execute($args);
         return $stmt;
     }
-    public function getLeaderBoardAround( $name, $score )
+    public function getLeaderBoardAround( $id )
     {
         if ( $this->operational == 0) return NULL;
-        $this->query(  "SELECT @rank:= 0;", array() );
-        $this->query(  "SELECT @targetRank:= ( SELECT s.rank FROM ( 
+        $this->connection->exec(  "SELECT @rank:= 0;" );
+        $this->connection->exec(  "SELECT @targetRank:= ( SELECT s.rank FROM ( 
                             SELECT @rank:= @rank + 1 as rank, t.* FROM (
-                            SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
+                            SELECT id FROM leaderboard ORDER BY score DESC, name ASC
                             ) t
-                        ) s WHERE s.score='?' AND s.name='?'
-                        );",array() );
-        $this->query(  "SELECT @rank:= 0;",array());
+                        ) s WHERE s.id='$id'
+                        );");
+        $this->connection->exec(  "SELECT @rank:= 0;" );
         $stmt = $this->query(  "SELECT * FROM (
                                 SELECT @rank:= @rank + 1 as rank, s.* FROM (
-                                    SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC
+                                    SELECT name, avatar, score FROM leaderboard ORDER BY score DESC, name ASC
                                 ) s
                                 ) t WHERE t.rank BETWEEN @targetRank-2 AND @targetRank+2 OR t.rank<='5';"
-                                , array($name,$score));
+                                , array());
         return $stmt;
     }
     public function getLeaderBoard( )
     {
         if ( $this->operational == 0 ) return NULL;
-        $this->query(  "SELECT @rank:= 0;",array() );
-        $stmt = $this->query("SELECT * FROM ( SELECT @rank:= @rank + 1 as rank, s.* FROM ( SELECT name, score FROM leaderboard ORDER BY score DESC, name ASC ) s) t WHERE t.rank<='10';"
+        $this->connection->exec(  "SELECT @rank:= 0;" );
+        $stmt = $this->query("SELECT * FROM ( SELECT @rank:= @rank + 1 as rank, s.* FROM ( SELECT name, avatar, score FROM leaderboard ORDER BY score DESC, name ASC ) s) t WHERE t.rank<='10';"
                                 , array() );
         return $stmt;
     }
@@ -81,17 +81,46 @@ class SQL {
                 }
             }
             $stmt = $this->query(
-                "SELECT id FROM session WHERE id='?';",
+                "SELECT id FROM leaderboard WHERE id='?';",
                 array( $id )
             );
             $result = $stmt->fetchAll();
         } while ($result->count() > 0);
-        $this->connection->exec("INSERT INTO session ( id, name, avatar, score ) VALUES ( $id,$name,$avatar,0 )");
+        $this->connection->exec("INSERT INTO leaderboard ( id, name, avatar ) VALUES ( $id,$name,$avatar )");
     }
 
-    public function addScore( $name, $score )
+    public function getSession( $id )
     {
-        $this->query( "INSERT INTO leaderboard ( name, score ) VALUES ( ?, ? );", array( $name, $score ) );
+        return $this->query( 
+            "SELECT name,avatar,score from leaderboard WHERE leaderboard.id='?';",
+            array( $id )
+        )->fetchAll();
+    }
+
+    public function getQuestion($id)
+    {
+        return $stmt = $this->query(
+            "SELECT questions.data as question FROM questions,leaderboard where leaderboard.id='?' and question.id=leaderboard.question_counter",
+            array($id)
+        )->fetchAll();
+    }
+    public function getAnswer($id)
+    {
+        return $this->query(
+            "SELECT answers.data as answer FROM answers,leaderboard where leaderboard.id='?' and answers.question_id=leaderboard.question_counter",
+            array($id)
+        )->fetchAll();
+    }
+    public function answerCheck($id,$answerId)
+    {
+        return $this->query(
+            "SELECT answers.data FROM answers,leaderboard where leaderboard.id='?' and answers.question_id=leaderboard.question_counter and answers.answer_id='?' and answers.is_expected=1",
+            array($id,$answerId)
+        )->fetchAll();
+    }
+    public function nextQuestion( $id )
+    {
+        $this->connection->exec( "UPDATE `leaderboard` SET `question_counter`=`question_counter` + 1 WHERE id='$id'");
     }
 }
 ?>
