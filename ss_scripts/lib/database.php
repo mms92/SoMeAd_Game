@@ -33,6 +33,7 @@ class SQL {
         if ( $this->operational == 0 ) return NULL;
         $connection = $this->connection;
         $stmt = $connection->prepare($sql);
+        echo $stmt->queryString;
         $stmt->execute($args);
         return $stmt;
     }
