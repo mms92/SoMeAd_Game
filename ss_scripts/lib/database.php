@@ -77,10 +77,15 @@ class SQL {
                 $id = $id.sprintf("",rand(97,122));
             }
         }
-        $stmt = $this->query(
-            "SELECT id FROM session WHERE id='?'",
-            array( $id )
-        );
+        $result = array()
+        do {
+            $stmt = $this->query(
+                "SELECT id FROM session WHERE id='?';",
+                array( $id )
+            );
+            $result = $stmt->fetchAll();
+        } while ($result->count() > 0);
+        $this->connection->exec("INSERT INTO session ( id, name, avatar, score ) VALUES ( $id,$name,$avatar,0 )");
     }
 
     public function addScore( $name, $score )
