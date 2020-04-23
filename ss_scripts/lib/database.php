@@ -99,21 +99,21 @@ class SQL {
     public function getQuestion($id)
     {
         return $stmt = $this->query(
-            "SELECT questions.data as question FROM questions,leaderboard where leaderboard.id='?' and questions.id=leaderboard.question_counter",
+            "SELECT questions.data as question FROM questions,leaderboard where leaderboard.id=\'?\' and questions.id=leaderboard.question_counter;",
             array($id)
-        )->fetchAll()[0];
+        )->fetchAll();
     }
     public function getAnswers($id)
     {
         return $this->query(
-            "SELECT answers.answer_id as id, answers.data as answer FROM answers,leaderboard where leaderboard.id='?' and answers.question_id=leaderboard.question_counter",
+            "SELECT answers.answer_id as id, answers.data as answer FROM answers,leaderboard where leaderboard.id=\'?\' and answers.question_id=leaderboard.question_counter;",
             array($id)
         )->fetchAll();
     }
     public function getCorrectAnswer($id,$answerId)
     {
         return $answers = $this->query(
-            "SELECT answers.answer_id as id FROM answers,leaderboard where leaderboard.id='?' and answers.question_id=leaderboard.question_counter and answers.is_expected=1",
+            "SELECT answers.answer_id as id FROM answers,leaderboard where leaderboard.id=\'?\' and answers.question_id=leaderboard.question_counter and answers.is_expected='1';",
             array($id)
         )->fetchAll();
     }
