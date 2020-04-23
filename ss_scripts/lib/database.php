@@ -66,19 +66,20 @@ class SQL {
 
     public function beginSession( $name, $avatar )
     {
-        $id = "";
-        for ($i=0; $i < 16; $i++) { 
-            if ( rand(0,1) > 0 )
-            {
-                $id = $id.sprintf("",rand(65,90));
-            }
-            else
-            {
-                $id = $id.sprintf("",rand(97,122));
-            }
-        }
-        $result = array()
+        
+        $result = array();
         do {
+            $id = "";
+            for ($i=0; $i < 16; $i++) { 
+                if ( rand(0,1) > 0 )
+                {
+                    $id = sprintf($id."%c",rand(65,90));
+                }
+                else
+                {
+                    $id = sprintf($id."%c",rand(97,122));
+                }
+            }
             $stmt = $this->query(
                 "SELECT id FROM session WHERE id='?';",
                 array( $id )
