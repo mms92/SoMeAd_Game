@@ -59,9 +59,8 @@ class SQL {
     {
         if ( $this->operational == 0 ) return NULL;
         $this->connection->exec(  "SELECT @rank:= 0;" );
-        $stmt = $this->query("SELECT * FROM ( SELECT @rank:= @rank + 1 as rank, s.* FROM ( SELECT name, avatar, score FROM leaderboard ORDER BY score DESC, name ASC ) s) t WHERE t.rank<='10';"
-                                , array() );
-        return $stmt;
+        return $this->query("SELECT * FROM ( SELECT @rank:= @rank + 1 as rank, s.* FROM ( SELECT name, avatar, score FROM leaderboard ORDER BY score DESC, name ASC ) s) t WHERE t.rank<='10';"
+                                , array() )->fetchAll();
     }
 
     public function beginSession( $name, $avatar )
@@ -87,6 +86,7 @@ class SQL {
             $result = $stmt->fetchAll();
         } while ($result->count() > 0);
         $this->connection->exec("INSERT INTO leaderboard ( id, name, avatar ) VALUES ( $id,$name,$avatar )");
+        return $id;
     }
 
     public function getSession( $id )
@@ -113,8 +113,8 @@ class SQL {
     }
     public function answerCheck($id,$answerId)
     {
-        return $this->query(
-            "SELECT answers.data FROM answers,leaderboard where leaderboard.id='?' and answers.question_id=leaderboard.question_counter and answers.answer_id='?' and answers.is_expected=1",
+        return $answers = $this->query(
+            "SELECT answers.id as id FROM answers,leaderboard where leaderboard.id='?' and answers.question_id=leaderboard.question_counter and answers.is_expected=1",
             array($id,$answerId)
         )->fetchAll();
     }
