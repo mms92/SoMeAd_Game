@@ -21,7 +21,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     }
     if ( $action == "session" )
     {
-        if ( count( $segment )== 6 )
+        if ( count( $segment )== 6 && $segment[ 5 ] != "" )
         {
             $subAction = $segment[ 5 ];
             if ( $subAction == "begin" && isset($_REQUEST["name"]) && isset($_REQUEST["avatar"] ) )
@@ -47,7 +47,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
         elseif ( isset($_REQUEST["id"]) )
         {
             echo $_REQUEST["id"];
-            echo json_encode($db->getSession($_REQUEST["id"]));
+            echo $db->getSession($_REQUEST["id"]);
         }
     }
 }
