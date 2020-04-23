@@ -9,10 +9,8 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     $results = $db->getLeaderBoard();
     echo "<br/>";
     if ($results != NULL) {
-        // output data of each row
-        while($row = $results->fetch_assoc()) {
-            echo "id: " . $row["rank"]. " - Name: " . $row["name"]. " Score: " . $row["score"]. "<br>";
-        }
+        $results_array = $results->fetchAll();
+        echo json_encode( $results_array )
     } else {
         echo "0 results";
     }
