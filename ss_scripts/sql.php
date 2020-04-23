@@ -7,7 +7,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     $segment = explode("/", $url);
     print_r( $segment );
     $db = new SQL( "SoMeAd","abc123" );
-    $action = $segment[ $segment->count() - 1 ];
+    $action = $segment[ 4 ];
     if ( $action == "leaderboard" )
     {
         if ( isset($_REQUEST["name"]) && isset($_REQUEST["score"]) )
@@ -29,7 +29,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     }
     if ( $action == "session" )
     {
-        
+
     }
 }
 ?>
