@@ -43,7 +43,7 @@ class leaderboard {
         xhttp.onreadystatechange = function()
         {
             console.log( this.responseText )
-            data = JSON.parse( this.responseText )
+            let data = JSON.parse( this.responseText )
             for (const row of data) {
                 Game.leaderboard.createRow( row.rank, row.name, row.avatar, row.score )
             }
