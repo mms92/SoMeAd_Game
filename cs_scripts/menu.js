@@ -24,7 +24,6 @@ class menu {
         {
             if (this.readyState == 4 && this.status == 200) {
                 Game.id = this.responseText
-                Game.question.display();
                 Game.question.begin();
             }
         };

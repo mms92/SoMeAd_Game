@@ -30,7 +30,17 @@ class question {
                 Game.questionText = this.responseText
             }
         };
-        xhttp.open("GET", Game.prefix+"/ss_scripts/sql.php/session/getQuestion?id="+Game.id, true)
+        xhttp.open("GET", "ss_scripts/sql.php/session/getQuestion?id="+Game.id, true)
         xhttp.send()
+
+        var xhttp2 = new XMLHttpRequest()
+        xhttp2.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200) {
+                Game.questionText = this.responseText
+            }
+        };
+        xhttp2.open("GET", "ss_scripts/sql.php/session/getAnswers?id="+Game.id, true)
+        xhttp2.send()
     }
 }
