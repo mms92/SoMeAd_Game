@@ -1,7 +1,18 @@
 <?php
+function utf8ize( $mixed ) {
+    if (is_array($mixed)) {
+        foreach ($mixed as $key => $value) {
+            $mixed[$key] = utf8ize($value);
+        }
+    } elseif (is_string($mixed)) {
+        return mb_convert_encoding($mixed, "UTF-8", "UTF-8");
+    }
+    return $mixed;
+}
 
 function json_encode_with_error( $data )
 {
+    $data = utf8ize( $data );
     $json = json_encode($data);
     if ($json === false) {
         // Avoid echo of empty string (which is invalid JSON), and
