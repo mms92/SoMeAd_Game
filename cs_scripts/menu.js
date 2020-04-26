@@ -40,7 +40,3 @@ class menu {
 
 }
 
-setInterval(
-    menu.displaySelectedAvatar,
-    0.1
-);
