@@ -24,8 +24,8 @@ class menu {
         {
             if (this.readyState == 4 && this.status == 200) {
                 Game.id = this.responseText
-                question.display();
-                question.begin();
+                Game.question.display();
+                Game.question.begin();
             }
         };
         xhttp.open("GET", "/ss_scripts/sql.php/session/begin?name="+Game.username+"&avatar="+Game.avatar, true)

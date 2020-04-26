@@ -7,11 +7,11 @@ class question {
         this.answersDiv = document.createElement("div");
         if ( Game.question != null )
         {
-            this.questionDiv.innerText = Game.question;
+            this.questionDiv.innerText = Game.questionText;
         }
         if ( Game.answers.length > 0 )
         {
-            for (const answer of Game.answers) {
+            for (const answer of Game.answersText) {
                 let answer = document.createElement("div");
                 answer.innerText = answer;
                 this.answersDiv.appendChild( answer );
@@ -26,7 +26,7 @@ class question {
         xhttp.onreadystatechange = function()
         {
             if (this.readyState == 4 && this.status == 200) {
-                Game.question = this.responseText
+                Game.questionText = this.responseText
             }
         };
         xhttp.open("GET", "/ss_scripts/sql.php/session/getQuestion?id="+Game.id, true)
