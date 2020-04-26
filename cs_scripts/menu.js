@@ -23,7 +23,7 @@ class menu {
         xhttp.onreadystatechange = function()
         {
             if (this.readyState == 4 && this.status == 200) {
-                Game.id = this.responseText
+                Game.id = JSON.parse( this.responseText )
                 Game.question.begin();
             }
         };

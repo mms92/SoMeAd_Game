@@ -27,7 +27,7 @@ class question {
         xhttp.onreadystatechange = function()
         {
             if (this.readyState == 4 && this.status == 200) {
-                Game.questionText = this.responseText
+                Game.questionText = JSON.parse( this.responseText )
             }
         };
         xhttp.open("GET", "ss_scripts/sql.php/session/getQuestion?id="+Game.id, true)
@@ -37,7 +37,7 @@ class question {
         xhttp2.onreadystatechange = function()
         {
             if (this.readyState == 4 && this.status == 200) {
-                Game.questionText = this.responseText
+                Game.questionText = JSON.parse( this.responseText )
             }
         };
         xhttp2.open("GET", "ss_scripts/sql.php/session/getAnswers?id="+Game.id, true)
