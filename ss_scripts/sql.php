@@ -62,11 +62,11 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
             {
                 if ( $subAction == "getQuestion" )
                 {
-                    echo json_encode_with_error( $question );
+                    echo json_encode_with_error( $_REQUEST["id"] );
                 }
                 if ( $subAction == "getAnswers" )
                 {
-                    echo json_encode_with_error( $answers );
+                    echo json_encode_with_error( $db->getAnswers($_REQUEST["id"]) );
                 }
                 if ( $subAction == "verifyAnswer" && isset($_REQUEST["answersId"] ) )
                 {
