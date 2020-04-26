@@ -62,7 +62,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
             {
                 if ( $subAction == "getQuestion" )
                 {
-                    echo json_encode_with_error( $db->getQuestion($_REQUEST["id"]) );
+                    echo json_encode_with_error( $db->getQuestion($_REQUEST["id"])[0][0] );
                 }
                 if ( $subAction == "getAnswers" )
                 {

@@ -37,7 +37,7 @@ class question {
         xhttp2.onreadystatechange = function()
         {
             if (this.readyState == 4 && this.status == 200) {
-                Game.questionText = JSON.parse( this.responseText )
+                Game.answersText = JSON.parse( this.responseText )
             }
         };
         xhttp2.open("GET", "ss_scripts/sql.php/session/getAnswers?id="+Game.id, true)
