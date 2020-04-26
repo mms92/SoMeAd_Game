@@ -49,7 +49,7 @@ class question {
         {
             if (this.readyState == 4 && this.status == 200) {
                 Game.validAnswer = JSON.parse( this.responseText );
-                setTimeout( Game.question.begin(), 5000 );
+                setTimeout( Game.question.begin, 5000 );
             }
         };
         xhttp.open("GET", "ss_scripts/sql.php/session/verifyAnswer?id="+Game.id+"&answerId="+id, true)
