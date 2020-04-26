@@ -108,7 +108,7 @@ class SQL {
     {
         $this->connection->query( "SELECT @max:=0" );
         $this->connection->query( "SELECT @max:=@max+1 FROM questions WHERE 1" );
-        return int_val($this->query( "SELECT @max as max;"
+        return intval($this->query( "SELECT @max as max;"
                             ,array())->fetchAll()[0]["max"]);
     }
     public function getAnswers($id)
