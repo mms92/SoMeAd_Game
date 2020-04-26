@@ -68,9 +68,9 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
                 {
                     echo json_encode_with_error( $db->getAnswers($_REQUEST["id"]) );
                 }
-                if ( $subAction == "verifyAnswer" && isset($_REQUEST["answersId"] ) )
+                if ( $subAction == "verifyAnswer" && isset($_REQUEST["answerId"] ) )
                 {
-                    echo json_encode_with_error($db->answerCheck($_REQUEST["id"],$_REQUEST["answersId"]));
+                    echo json_encode_with_error($db->answerCheck($_REQUEST["id"],$_REQUEST["answerId"]));
                 }
             }
         }
