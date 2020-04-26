@@ -13,7 +13,7 @@ function utf8ize( $mixed ) {
 
 function json_encode_with_error( $data )
 {
-    //$data = utf8ize( $data );
+    $data = utf8ize( $data );
     $json = json_encode($data);
     if ($json === false) {
         // Avoid echo of empty string (which is invalid JSON), and
