@@ -63,7 +63,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
                 }
                 if ( $subAction == "verifyAnswer" && isset($_REQUEST["answersId"] ) )
                 {
-                    echo json_encode_with_error( "error: undeclared function")
+                    echo json_encode_with_error( "error: undeclared function");
                     //echo json_encode_with_error($db->answerCheck($_REQUEST["id"],$_REQUEST["answersId"]));
                 }
             }
