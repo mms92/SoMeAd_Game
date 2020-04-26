@@ -7,7 +7,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <link rel="stylesheet" type="text/css" media="screen" href="index.css">
-    <script src="index.js"></script>
+    <script src="cs_scripts/game.js"></script>
+    <script src="cs_scripts/menu.js"></script>
+    <script src="cs_scripts/question.js"></script>
+    <script src="cs_scripts/leaderboard.js"></script>
 </head>
 <body>
     <div id="title">
@@ -15,18 +18,18 @@
         <p>le jeu de prévention aux addictions des réseaux sociaux</p>
     </div>
     <div id="avatarSelect">
-        <img class="avatar" href="#" src="images\000001.png" onclick="selectAvatar(1)">
-        <img class="avatar" href="#" src="images\000002.png" onclick="selectAvatar(2)">
-        <img class="avatar" href="#" src="images\000003.png" onclick="selectAvatar(3)">
-        <img class="avatar" href="#" src="images\000004.png" onclick="selectAvatar(4)">
-        <img class="avatar" href="#" src="images\000005.png" onclick="selectAvatar(5)">
-        <img class="avatar" href="#" src="images\000006.png" onclick="selectAvatar(6)">
-        <img class="avatar" href="#" src="images\000007.png" onclick="selectAvatar(7)">
+        <img class="avatar" href="#" src="images\000001.png" onclick="menu.selectAvatar(1)">
+        <img class="avatar" href="#" src="images\000002.png" onclick="menu.selectAvatar(2)">
+        <img class="avatar" href="#" src="images\000003.png" onclick="menu.selectAvatar(3)">
+        <img class="avatar" href="#" src="images\000004.png" onclick="menu.selectAvatar(4)">
+        <img class="avatar" href="#" src="images\000005.png" onclick="menu.selectAvatar(5)">
+        <img class="avatar" href="#" src="images\000006.png" onclick="menu.selectAvatar(6)">
+        <img class="avatar" href="#" src="images\000007.png" onclick="menu.selectAvatar(7)">
     </div>
     <div>
     <label for="username">Pseudo</label>
         <input id="username" type="text" name="username">
-        <input type="submit" value="C'est partie" onclick="startgame()">
+        <input type="submit" value="C'est partie" onclick="menu.startgame()">
     </div>
 </body>
 </html>
