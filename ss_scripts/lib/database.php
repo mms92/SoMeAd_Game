@@ -125,7 +125,7 @@ class SQL {
         {
             incrementScore( $id );
         }
-        nextQuestion( $id );
+        $this->nextQuestion( $id );
 
         return $correct;
     }
