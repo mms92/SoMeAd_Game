@@ -4,12 +4,16 @@ class question {
     answerDiv = [];
     begin ()
     {
-        document.body.innerHTML = "";
-        this.questionDiv = document.createElement("div");
-        this.answersDiv = document.createElement("div");
-
-        document.body.appendChild( this.questionDiv );
-        document.body.appendChild( this.answersDiv );
+        
+        if ( this.questionDiv == null )
+        {
+            document.body.innerHTML = "";
+            this.questionDiv = document.createElement("div");
+            this.answersDiv = document.createElement("div");
+            document.body.appendChild( this.questionDiv );
+            document.body.appendChild( this.answersDiv );
+        }
+        
 
         var xhttp = new XMLHttpRequest()
         xhttp.onreadystatechange = function()
