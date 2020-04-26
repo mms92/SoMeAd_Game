@@ -119,8 +119,9 @@ class SQL {
     }
     public function answerCheck( $id, $answerId )
     {
-        $correct = getCorrectAnswer( $id )[0];
-        if ( $correct["answer_id"] == $answerId )
+        $correct = getCorrectAnswer( $id );
+        var_dump( $correct );
+        if ( $correct["id"] == $answerId )
         {
             incrementScore( $id );
         }
