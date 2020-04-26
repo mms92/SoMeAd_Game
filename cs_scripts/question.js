@@ -48,6 +48,7 @@ class question {
         xhttp.onreadystatechange = function()
         {
             if (this.readyState == 4 && this.status == 200) {
+                console.log( this.responseText );
                 Game.validAnswer = JSON.parse( this.responseText );
                 setTimeout( Game.question.begin, 5000 );
             }
