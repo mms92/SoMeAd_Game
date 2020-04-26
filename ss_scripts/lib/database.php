@@ -125,6 +125,8 @@ class SQL {
             incrementScore( $id );
         }
         nextQuestion( $id );
+
+        return $correct;
     }
     public function incrementScore( $id )
     {
