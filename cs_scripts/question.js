@@ -18,7 +18,7 @@ class question {
         {
             for (const answerText of Game.answersText) {
                 console.log( answerText )
-                let answerDiv = document.createElement("p");
+                var answerDiv = document.createElement("p");
                 answerDiv.innerText = answerText.answer;
                 answerDiv.onclick = "Game.question.sendAnswer("+answerText.id+")"
                 this.answersDiv.appendChild( answerDiv );
