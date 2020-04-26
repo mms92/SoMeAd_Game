@@ -6,6 +6,10 @@ class question {
         document.body.innerHTML = "";
         this.questionDiv = document.createElement("div");
         this.answersDiv = document.createElement("div");
+
+        document.body.appendChild( this.questionDiv );
+        document.body.appendChild( this.answersDiv );
+
         if ( Game.question != null )
         {
             this.questionDiv.innerText = Game.questionText;
@@ -32,8 +36,7 @@ class question {
             }
         }
         
-        document.body.appendChild( this.questionDiv );
-        document.body.appendChild( this.answersDiv );
+        
     }
     begin ()
     {
