@@ -3,6 +3,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
 {
     require_once "lib/database.php";
     header('Content-Type: application/json; charset=utf-8');
+    echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
     $url = $_SERVER["PHP_SELF"];
     $segment = explode("/", $url);
     $db = new SQL( "SoMeAd","abc123" );
