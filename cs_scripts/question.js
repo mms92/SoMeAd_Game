@@ -13,6 +13,7 @@ class question {
         if ( Game.answers != null && Game.answers.length > 0 )
         {
             for (const answerText of Game.answersText) {
+                console.log( answerText )
                 let answerDiv = document.createElement("p");
                 answerDiv.innerText = answerText.answer;
                 answerDiv.onclick = "Game.question.sendAnswer("+answerText.id+")"
