@@ -1,10 +1,7 @@
 
 class menu {
     errorDiv = null;
-    displayInterval = setInterval(
-        Game.menu.displaySelectedAvatar,
-        0.1
-    );
+    displayInterval = null;
     displaySelectedAvatar()
     {
         for (const imgDom of document.getElementsByClassName("avatar")) {

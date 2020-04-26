@@ -10,4 +10,7 @@ Game.leaderboard = new leaderboard()
 Game.question = new question()
 Game.prefix = "SoMeAd_Game"
 
-
+Game.menu.displayInterval = setInterval(
+    Game.menu.displaySelectedAvatar,
+    0.1
+);
