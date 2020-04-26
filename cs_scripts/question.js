@@ -12,12 +12,25 @@ class question {
         }
         if ( Game.answers != null && Game.answers.length > 0 )
         {
-            for (const answer of Game.answersText) {
-                let answer = document.createElement("div");
-                answer.innerText = answer;
-                this.answersDiv.appendChild( answer );
+            for (const answerText of Game.answersText) {
+                let answerDiv = document.createElement("p");
+                answerDiv.innerText = answerText.answer;
+                answerDiv.onclick = "Game.question.sendAnswer("+answerText.id+")"
+                this.answersDiv.appendChild( answerDiv );
+                if ( Game.validAnswer != null )
+                {
+                    if ( Game.validAnswer.id == answerText.id )
+                    {
+                        answerDiv.style.color = "0x00FF00"
+                    }
+                    else
+                    {
+                        answerDiv.style.color = "0xFF0000"
+                    }
+                }
             }
         }
+        
         document.body.appendChild( this.questionDiv );
         document.body.appendChild( this.answersDiv );
     }
@@ -28,6 +41,7 @@ class question {
         {
             if (this.readyState == 4 && this.status == 200) {
                 Game.questionText = JSON.parse( this.responseText )
+                Game.validAnswer = null
                 Game.question.display();
             }
         };
@@ -44,5 +58,19 @@ class question {
         };
         xhttp2.open("GET", "ss_scripts/sql.php/session/getAnswers?id="+Game.id, true)
         xhttp2.send()
+    }
+    sendAnswer( id )
+    {
+        var xhttp = new XMLHttpRequest()
+        xhttp.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200) {
+                Game.validAnswer = JSON.parse( this.responseText );
+                Game.question.display();
+                setTimeout( Game.question.begin(), 5000 );
+            }
+        };
+        xhttp.open("GET", "ss_scripts/sql.php/session/verifyAnswer?id="+Game.id+"&answerId="+id, true)
+        xhttp.send()
     }
 }
