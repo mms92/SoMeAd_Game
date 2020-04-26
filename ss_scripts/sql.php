@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 function json_encode_with_error( $data )
 {
