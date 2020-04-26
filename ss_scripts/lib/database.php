@@ -119,7 +119,7 @@ class SQL {
     }
     public function answerCheck( $id, $answerId )
     {
-        $correct = getCorrectAnswer( $id );
+        $correct = $this->getCorrectAnswer( $id );
         var_dump( $correct );
         if ( $correct["id"] == $answerId )
         {
