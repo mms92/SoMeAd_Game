@@ -26,7 +26,7 @@ class question {
                 console.log( data )
                 Game.questionId = data[0]["id"];
                 Game.questionCount = data[1];
-                Game.question.questionDiv.innerText = data[0]["question"] + "("+Game.questionId+"/"+Game.questionCount+")";
+                Game.question.questionDiv.innerText = data[0]["question"] + " ( "+Game.questionId+" / "+Game.questionCount+" ) ";
 
                 if ( Game.question.answerDiv.length > 0 )
                 {
