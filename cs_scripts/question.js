@@ -79,7 +79,7 @@ class question {
                 }
                 else
                 {
-                    Game.leaderboard.begin();
+                    setTimeout( Game.leaderboard.begin, 5000 );
                 }
             }
         };

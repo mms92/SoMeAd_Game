@@ -12,7 +12,7 @@ class leaderboard {
         this.tableBody = document.createElement("tbody")
 
         this.leaderboardDiv.appendChild( description )
-        this.leaderboardDiv.appendChild( tableHeader )
+        this.leaderboardDiv.appendChild( this.tableBody )
         this.getData()
     }
     createRow( rank, name, avatar, score )
