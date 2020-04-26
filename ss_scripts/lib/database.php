@@ -54,6 +54,7 @@ class SQL {
                                 ) t WHERE t.rank BETWEEN @targetRank-2 AND @targetRank+2 OR t.rank<='5';"
                                 , array())->fetchAll();
     }
+    
     public function getLeaderBoard( )
     {
         if ( $this->operational == 0 ) return NULL;
@@ -99,9 +100,15 @@ class SQL {
     public function getQuestion($id)
     {
         return $stmt = $this->query(
-            "SELECT questions.data as question FROM questions,leaderboard where leaderboard.id=? and questions.id=leaderboard.question_counter;",
+            "SELECT questions.id as id, questions.data as question FROM questions,leaderboard where leaderboard.id=? and questions.id=leaderboard.question_counter;",
             array($id)
-        )->fetchAll();
+        )->fetchAll()[0];
+    }
+    public function getQuestionCount()
+    {
+        return $this->query( "SELECT @max:=0;
+                            SELECT @max:=@max+1 FROM questions WHERE 1;
+                            SELECT @max as max;")[2]["max"];
     }
     public function getAnswers($id)
     {

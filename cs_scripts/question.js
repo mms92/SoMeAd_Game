@@ -24,7 +24,9 @@ class question {
                 console.log( this.responseText )
                 var data = JSON.parse( this.responseText )
                 console.log( data )
-                Game.question.questionDiv.innerText = data[0];
+                Game.questionId = data[0]["id"];
+                Game.questionCount = data[1];
+                Game.question.questionDiv.innerText = data[0]["question"];
 
                 if ( Game.question.answerDiv.length > 0 )
                 {
@@ -34,7 +36,7 @@ class question {
                     Game.question.answerDiv = []
                 }
 
-                for (const answerText of data[1] ) {
+                for (const answerText of data[2] ) {
                     var answerDiv = document.createElement("p");
                     answerDiv.innerText = answerText.answer;
                     answerDiv.onclick = function()
