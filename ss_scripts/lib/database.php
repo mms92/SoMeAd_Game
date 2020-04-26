@@ -119,8 +119,8 @@ class SQL {
     }
     public function answerCheck( $id, $answerId )
     {
-        $correct = $this->getCorrectAnswer( $id );
-        var_dump( $correct );
+        $correct = $this->getCorrectAnswer( $id )[0];
+        var_dump( $answerId );
         if ( $correct["id"] == $answerId )
         {
             incrementScore( $id );
