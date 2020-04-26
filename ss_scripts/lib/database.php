@@ -106,10 +106,10 @@ class SQL {
     }
     public function getQuestionCount()
     {
-        return $this->query( "SELECT @max:=0;
-                            SELECT @max:=@max+1 FROM questions WHERE 1;
-                            SELECT @max as max;"
-                            ,array())->fetchAll();
+        $this->connection->query( "SELECT @max:=0" );
+        $this->connection->query( "SELECT @max:=@max+1 FROM questions WHERE 1" );
+        return $this->query( "SELECT @max as max;"
+                            ,array())->fetchAll()[0]["max"];
     }
     public function getAnswers($id)
     {
