@@ -51,8 +51,8 @@ class question {
                 console.log( this.responseText );
                 Game.validAnswer = JSON.parse( this.responseText );
                 for (const key in Game.question.answerDiv) {
-                    if (object.hasOwnProperty(key)) {
-                        const element = object[key];
+                    if (Game.question.answerDiv.hasOwnProperty(key)) {
+                        const element = Game.question.answerDiv[key];
                         if ( key == Game.validAnswer.id )
                         {
                             element.style.color = "rgb(0,255,0)";
