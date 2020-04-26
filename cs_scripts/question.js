@@ -34,7 +34,7 @@ class question {
                     Game.question.answerDiv = []
                 }
 
-                for (const answerText of JSON.parse( data[1] )) {
+                for (const answerText of data[1] ) {
                     var answerDiv = document.createElement("p");
                     answerDiv.innerText = answerText.answer;
                     answerDiv.onclick = function()
