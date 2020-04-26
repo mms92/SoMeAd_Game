@@ -27,7 +27,7 @@ class menu {
                 Game.question.begin();
             }
         };
-        xhttp.open("GET", "/ss_scripts/sql.php/session/begin?name="+Game.username+"&avatar="+Game.avatar, true)
+        xhttp.open("GET", "ss_scripts/sql.php/session/begin?name="+Game.username+"&avatar="+Game.avatar, true)
         xhttp.send()
     }
 
