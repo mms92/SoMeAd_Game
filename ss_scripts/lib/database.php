@@ -16,7 +16,7 @@ class SQL {
         $password = $this->password;
         $host = "localhost";
         $db = "SoMeAd_Game";
-        $dsn = "mysql:host=$host".( empty($db) ? "" : ";dbname=$db;charset=utf8" );
+        $dsn = "mysql:host=$host".( empty($db) ? "" : ";dbname=$db" ).";charset=utf8";
         try {
         	$this->connection = new PDO($dsn, $username, $password, array(
                 PDO::ATTR_PERSISTENT => true
@@ -110,12 +110,25 @@ class SQL {
             array($id)
         )->fetchAll();
     }
-    public function getCorrectAnswer($id,$answerId)
+    public function getCorrectAnswer($id)
     {
         return $answers = $this->query(
             "SELECT answers.answer_id as id FROM answers,leaderboard where leaderboard.id=? and answers.question_id=leaderboard.question_counter and answers.is_expected='1';",
             array($id)
         )->fetchAll();
+    }
+    public function answerCheck( $id, $answerId )
+    {
+        $correct = getCorrectAnswer( $id )[0];
+        if ( $correct["answer_id"] == $answerId )
+        {
+            incrementScore( $id );
+        }
+        nextQuestion( $id );
+    }
+    public function incrementScore( $id )
+    {
+        $this->connection->exec( "UPDATE `leaderboard` SET `score`=`score`+1 WHERE id='$id'");
     }
     public function nextQuestion( $id )
     {
