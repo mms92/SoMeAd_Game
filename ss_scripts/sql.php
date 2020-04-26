@@ -2,7 +2,7 @@
 
 function json_encode_with_error( $data )
 {
-    $json = json_encode($data,JSON_UNESCAPED_UNICODE);
+    $json = json_encode($data);
     if ($json === false) {
         // Avoid echo of empty string (which is invalid JSON), and
         // JSONify the error message instead:
