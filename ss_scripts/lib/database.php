@@ -122,7 +122,7 @@ class SQL {
         $correct = $this->getCorrectAnswer( $id )[0];
         if ( $correct["id"] == $answerId )
         {
-            incrementScore( $id );
+            $this->incrementScore( $id );
         }
         $this->nextQuestion( $id );
 
