@@ -3,6 +3,7 @@ class question {
     answersDiv;
     display ()
     {
+        document.body.innerHTML = "";
         this.questionDiv = document.createElement("div");
         this.answersDiv = document.createElement("div");
         if ( Game.question != null )
@@ -29,7 +30,7 @@ class question {
                 Game.questionText = this.responseText
             }
         };
-        xhttp.open("GET", "/ss_scripts/sql.php/session/getQuestion?id="+Game.id, true)
+        xhttp.open("GET", Game.prefix+"/ss_scripts/sql.php/session/getQuestion?id="+Game.id, true)
         xhttp.send()
     }
 }

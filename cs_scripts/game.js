@@ -8,6 +8,8 @@ Game.answersText = []
 Game.menu = new menu()
 Game.leaderboard = new leaderboard()
 Game.question = new question()
+Game.prefix = "SoMeAd_Game"
+
 
 setInterval(
     Game.menu.displaySelectedAvatar,
