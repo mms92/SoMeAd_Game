@@ -24,7 +24,7 @@ class question {
                 console.log( this.responseText )
                 var data = JSON.parse( this.responseText )
                 console.log( data )
-                Game.questionId = data[0]["id"];
+                Game.questionId = data[0]["id"] + 1;
                 Game.questionCount = data[1];
                 Game.question.questionDiv.innerText = data[0]["question"] + " ( "+Game.questionId+" / "+Game.questionCount+" ) ";
 
