@@ -44,7 +44,7 @@ class leaderboard {
 
             data = JSON.parse( this.responseText )
             for (const row of data) {
-                createRow( row.rank, row.name, row.avatar, row.score )
+                Game.leaderboard.createRow( row.rank, row.name, row.avatar, row.score )
             }
         };
         xhttp.open("GET", "ss_scripts/sql.php/leaderboard/?id="+Game.id, true)
