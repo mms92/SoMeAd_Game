@@ -15,6 +15,7 @@ class question {
         xhttp.onreadystatechange = function()
         {
             if (this.readyState == 4 && this.status == 200) {
+                console.log( this.responseText )
                 Game.question.questionDiv.innerText = JSON.parse( this.responseText );
                 Game.validAnswer = null
             }
@@ -27,7 +28,6 @@ class question {
         {
             if (this.readyState == 4 && this.status == 200) {
                 for (const answerText of JSON.parse( this.responseText )) {
-                    console.log( answerText )
                     var answerDiv = document.createElement("p");
                     answerDiv.innerText = answerText.answer;
                     answerDiv.onclick = function()
@@ -50,6 +50,19 @@ class question {
             if (this.readyState == 4 && this.status == 200) {
                 console.log( this.responseText );
                 Game.validAnswer = JSON.parse( this.responseText );
+                for (const key in Game.question.answerDiv) {
+                    if (object.hasOwnProperty(key)) {
+                        const element = object[key];
+                        if ( key == Game.validAnswer.id )
+                        {
+                            element.style.color = "rgb(0,255,0)";
+                        }
+                        else
+                        {
+                            element.style.color = "rgb(255,0,0)";
+                        }
+                    }
+                }
                 setTimeout( Game.question.begin, 5000 );
             }
         };
