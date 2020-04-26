@@ -4,6 +4,7 @@ class question {
     answerDiv = [];
     begin ()
     {
+        document.body.innerHTML = "";
         this.questionDiv = document.createElement("div");
         this.answersDiv = document.createElement("div");
 
@@ -29,7 +30,10 @@ class question {
                     console.log( answerText )
                     var answerDiv = document.createElement("p");
                     answerDiv.innerText = answerText.answer;
-                    answerDiv.onclick = "Game.question.sendAnswer("+answerText.id+")"
+                    answerDiv.onclick = function()
+                    {
+                        Game.question.sendAnswer(answerText.id)
+                    }
                     Game.question.answerDiv[answerText.id] = answerDiv
                     Game.question.answersDiv.appendChild( answerDiv );
                 }
