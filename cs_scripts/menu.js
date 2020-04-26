@@ -32,7 +32,7 @@ class menu {
             };
             xhttp.open("GET", "ss_scripts/sql.php/session/begin?name="+Game.username+"&avatar="+Game.avatar, true)
             xhttp.send()
-            clearInterval( this.displayInterval() )
+            clearInterval( this.displayInterval )
         }
         else
         {
