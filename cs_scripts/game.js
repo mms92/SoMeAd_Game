@@ -11,7 +11,3 @@ Game.question = new question()
 Game.prefix = "SoMeAd_Game"
 
 
-setInterval(
-    Game.menu.displaySelectedAvatar,
-    0.1
-);

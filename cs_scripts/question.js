@@ -4,10 +4,9 @@ class question {
     answerDiv = [];
     begin ()
     {
-        
+        Game.menu.displayInterval
         if ( this.questionDiv == null )
-        {
-            document.body.innerHTML = "";
+        {            document.body.innerHTML = "";
             this.questionDiv = document.createElement("div");
             this.answersDiv = document.createElement("div");
             document.body.appendChild( this.questionDiv );

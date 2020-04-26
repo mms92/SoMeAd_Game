@@ -1,5 +1,10 @@
 
 class menu {
+    errorDiv = null;
+    displayInterval = setInterval(
+        Game.menu.displaySelectedAvatar,
+        0.1
+    );
     displaySelectedAvatar()
     {
         for (const imgDom of document.getElementsByClassName("avatar")) {
@@ -15,20 +20,32 @@ class menu {
             }
         }
     }
-
     startgame()
     {
-        Game.username = document.getElementById("username").value
-        var xhttp = new XMLHttpRequest()
-        xhttp.onreadystatechange = function()
+        if ( Game.avatar != null )
         {
-            if (this.readyState == 4 && this.status == 200) {
-                Game.id = JSON.parse( this.responseText )
-                Game.question.begin();
+            Game.username = document.getElementById("username").value
+            var xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200) {
+                    Game.id = JSON.parse( this.responseText )
+                    Game.question.begin();
+                }
+            };
+            xhttp.open("GET", "ss_scripts/sql.php/session/begin?name="+Game.username+"&avatar="+Game.avatar, true)
+            xhttp.send()
+            clearInterval( this.displayInterval() )
+        }
+        else
+        {
+            if ( this.errorDiv == null )
+            {
+                this.errorDiv = document.createElement("div")
+                document.body.appendChild( this.errorDiv )
             }
-        };
-        xhttp.open("GET", "ss_scripts/sql.php/session/begin?name="+Game.username+"&avatar="+Game.avatar, true)
-        xhttp.send()
+            this.errorDiv.innerText = "vous n'avez pas choisi d'avatar"
+        }
     }
 
     selectAvatar( avatarId )
