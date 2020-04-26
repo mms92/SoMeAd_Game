@@ -73,7 +73,14 @@ class question {
                         }
                     }
                 }
-                setTimeout( Game.question.request_Question_Data, 5000 );
+                if ( Game.questionId < Game.questionCount )
+                {
+                    setTimeout( Game.question.request_Question_Data, 5000 );
+                }
+                else
+                {
+                    Game.leaderboard.begin();
+                }
             }
         };
         xhttp.open("GET", "ss_scripts/sql.php/session/verifyAnswer?id="+Game.id+"&answerId="+id, true)
