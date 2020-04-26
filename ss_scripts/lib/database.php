@@ -108,7 +108,8 @@ class SQL {
     {
         return $this->query( "SELECT @max:=0;
                             SELECT @max:=@max+1 FROM questions WHERE 1;
-                            SELECT @max as max;")[2]["max"];
+                            SELECT @max as max;"
+                            ,array())[2]["max"];
     }
     public function getAnswers($id)
     {
