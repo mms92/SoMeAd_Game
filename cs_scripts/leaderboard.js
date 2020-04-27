@@ -4,15 +4,15 @@ class leaderboard {
     begin()
     {
         document.body.innerHTML = ""
-        this.leaderboardDiv = document.createElement("table")
+        Game.leaderboard.leaderboardDiv = document.createElement("table")
 
         var description = document.createElement("caption")
         description.innerText = "Tableau des scores"
 
-        this.tableBody = document.createElement("tbody")
-        this.tableBody.id = "leaderboard_body"
-        this.leaderboardDiv.appendChild( description )
-        this.leaderboardDiv.appendChild( this.tableBody )
+        Game.leaderboard.tableBody = document.createElement("tbody")
+        Game.leaderboard.tableBody.id = "leaderboard_body"
+        Game.leaderboard.leaderboardDiv.appendChild( description )
+        Game.leaderboard.leaderboardDiv.appendChild( this.tableBody )
         document.body.appendChild( this.leaderboardDiv )
         Game.leaderboard.getData()
     }
