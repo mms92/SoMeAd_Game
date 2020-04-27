@@ -18,19 +18,19 @@ class leaderboard {
     }
     createRow( rank, name, avatar, score )
     {
-        var tableRow = document.createElement("tr")
+        let tableRow = document.createElement("tr")
         tableRow.className = "leaderboard_entry"
-        var rankcell = document.createElement("td")
-        var namecell = document.createElement("td")
-        var avatarcell = document.createElement("td")
-        var scorecell = document.createElement("td")
+        let rankcell = document.createElement("td")
+        let namecell = document.createElement("td")
+        let avatarcell = document.createElement("td")
+        let scorecell = document.createElement("td")
 
         tableRow.appendChild( rankcell );
         tableRow.appendChild( namecell );
         tableRow.appendChild( scorecell  );
         tableRow.appendChild( avatarcell );
         
-        this.tableBody.appendChild( tableRow );
+        Game.leaderboard.tableBody.appendChild( tableRow );
 
         rankcell.innerText = rank
         namecell.innerText = name
@@ -42,10 +42,12 @@ class leaderboard {
         var xhttp = new XMLHttpRequest()
         xhttp.onreadystatechange = function()
         {
-            console.log( this.responseText )
-            let data = JSON.parse( this.responseText )
-            for (const row of data) {
-                Game.leaderboard.createRow( row.rank, row.name, row.avatar, row.score )
+            if (this.readyState == 4 && this.status == 200) {
+                console.log( this.responseText )
+                let data = JSON.parse( this.responseText )
+                for (const row of data) {
+                    Game.leaderboard.createRow( row.rank, row.name, row.avatar, row.score )
+                }
             }
         };
         xhttp.open("GET", "ss_scripts/sql.php/leaderboard/?id="+Game.id, true)
