@@ -37,6 +37,7 @@ class question {
 
                 for (const answerText of data[2] ) {
                     var answerDiv = document.createElement("p");
+                    answerDiv.className = "answers"
                     answerDiv.innerText = answerText.answer;
                     answerDiv.onclick = function()
                     {
@@ -70,6 +71,7 @@ class question {
                         {
                             element.style.color = "rgb(255,0,0)";
                         }
+                        console.log( element.style );
                     }
                 }
                 if ( Game.questionId < Game.questionCount )
