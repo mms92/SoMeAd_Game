@@ -12,8 +12,8 @@ class leaderboard {
         Game.leaderboard.tableBody = document.createElement("tbody")
         Game.leaderboard.tableBody.id = "leaderboard_body"
         Game.leaderboard.leaderboardDiv.appendChild( description )
-        Game.leaderboard.leaderboardDiv.appendChild( this.tableBody )
-        document.body.appendChild( this.leaderboardDiv )
+        Game.leaderboard.leaderboardDiv.appendChild( Game.leaderboard.tableBody )
+        document.body.appendChild( Game.leaderboard.leaderboardDiv )
         Game.leaderboard.getData()
     }
     createRow( rank, name, avatar, score )
