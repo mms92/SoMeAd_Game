@@ -5,12 +5,11 @@ class leaderboard {
     {
         document.body.innerHTML = ""
         Game.leaderboard.leaderboardDiv = document.createElement("table")
-
+        Game.leaderboard.leaderboardDiv.id = "leaderboard_table"
         var description = document.createElement("caption")
         description.innerText = "Tableau des scores"
 
         Game.leaderboard.tableBody = document.createElement("tbody")
-        Game.leaderboard.tableBody.id = "leaderboard_body"
         Game.leaderboard.leaderboardDiv.appendChild( description )
         Game.leaderboard.leaderboardDiv.appendChild( Game.leaderboard.tableBody )
         document.body.appendChild( Game.leaderboard.leaderboardDiv )
@@ -20,7 +19,7 @@ class leaderboard {
     {
         let tableRow = document.createElement("tr")
         tableRow.className = "leaderboard_entry"
-        
+
         let rankcell = document.createElement("td")
         let namecell = document.createElement("td")
         let avatarcell = document.createElement("td")

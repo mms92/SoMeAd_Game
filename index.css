@@ -100,3 +100,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
+#leaderboard_table {
+    border: 2px solid #ca6012;
+    margin: auto;
+}
