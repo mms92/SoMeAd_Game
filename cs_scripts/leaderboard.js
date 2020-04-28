@@ -7,7 +7,8 @@ class leaderboard {
         Game.leaderboard.leaderboardDiv = document.createElement("table")
         Game.leaderboard.leaderboardDiv.id = "leaderboard_table"
         var description = document.createElement("caption")
-        description.innerText = "Tableau des scores"
+        description.innerText = "Classement"
+        description.id = "desc"
 
         Game.leaderboard.tableBody = document.createElement("tbody")
         Game.leaderboard.leaderboardDiv.appendChild( description )
@@ -32,10 +33,10 @@ class leaderboard {
         
         Game.leaderboard.tableBody.appendChild( tableRow );
 
-        rankcell.innerText = rank
+        rankcell.innerText = rank + "<sup>" + ( rank == 1 ? "er" : "ème" ) + "</sup>"
         namecell.innerText = name
         avatarcell.innerHTML = "<img class='leaderboard_avatar' src='images/"+avatar+"' style=\"width:64px\; height:64px;\">"
-        scorecell.innerText = score
+        scorecell.innerText = score + "pts"
     }
     getData()
     {
