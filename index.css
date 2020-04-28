@@ -104,6 +104,7 @@
     flex-wrap: wrap;
 }
 #leaderboard_table {
+    width: 50%;
     border: 2px solid #ca6012;
     background-color: #fcffc8;
     border-radius: 32px;
@@ -118,9 +119,19 @@
     border: 2px solid #ca6012;
     border-radius: 16px;
     display: flex;
+    justify-content: space-evenly;
     background-color: #ffd966;
 }
 .leaderboard_entry td {
+    width: 25%;
     margin: auto;
     padding: 10px;
+    text-align: center;
+}
+#desc {
+    margin: auto;
+    border: 2px solid #ca6012;
+    border-radius: 23px;
+    padding: 20px;
+    background-color: #FFD898;
 }
