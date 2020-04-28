@@ -57,7 +57,7 @@
     font-size: large;
 }
 #question_div {
-    border: 1px solid #ca6012;
+    border: 2px solid #ca6012;
     border-radius: 64px;
     background-color: #f7db99;
     width: 90%;
@@ -80,7 +80,7 @@
 }
 .answers {
     display: flex;
-    border: 1px solid #ca6012;
+    border: 2px solid #ca6012;
     border-radius: 64px;
     background-color: #f7db99;
     width: 40%;

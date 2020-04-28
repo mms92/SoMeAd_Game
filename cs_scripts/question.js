@@ -71,11 +71,11 @@ class question {
                         const element = Game.question.answerDiv[key];
                         if ( key == Game.validAnswer.id )
                         {
-                            element.style.backgroundColor = "rgb(0,255,0)";
+                            element.style.backgroundColor = "rgb(146,208,80)";
                         }
                         else
                         {
-                            element.style.backgroundColor = "rgb(255,0,0)";
+                            element.style.backgroundColor = "rgb(255,101,59)";
                         }
                     }
                 }
