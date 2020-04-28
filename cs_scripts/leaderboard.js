@@ -33,10 +33,10 @@ class leaderboard {
         
         Game.leaderboard.tableBody.appendChild( tableRow );
 
-        rankcell.innerText = rank + "<sup>" + ( rank == 1 ? "er" : "ème" ) + "</sup>"
+        rankcell.innerHTML = rank + "<sup>" + ( rank == 1 ? "er" : "ème" ) + "</sup>"
         namecell.innerText = name
         avatarcell.innerHTML = "<img class='leaderboard_avatar' src='images/"+avatar+"' style=\"width:64px\; height:64px;\">"
-        scorecell.innerText = score + "pts"
+        scorecell.innerHTML = score + "pts"
     }
     getData()
     {
