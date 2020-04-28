@@ -7,16 +7,21 @@ class question {
     {
         Game.menu.displayInterval
         if ( this.questionDiv == null )
-        {            document.body.innerHTML = "";
+        {
+            document.body.innerHTML = "";
+            let question_div_sequence = document.createElement("div");
+            question_div_sequence.id = "question_div_sequence";
             this.questionDiv = document.createElement("div");
             this.questionDiv.id = "question_div"
             this.answersDiv = document.createElement("div");
             this.answersDiv.id = "answers_div"
             this.countDiv = document.createElement("div");
             this.countDiv.id = "count_div"
-            document.body.appendChild( this.countDiv );
-            document.body.appendChild( this.questionDiv );
-            document.body.appendChild( this.answersDiv );
+
+            question_div_sequence.appendChild( this.countDiv );
+            question_div_sequence.appendChild( this.questionDiv );
+            question_div_sequence.appendChild( this.answersDiv );
+            document.body.appendChild( question_div_sequence );
         }
         this.request_Question_Data();
     }

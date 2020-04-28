@@ -94,3 +94,8 @@
     height: fit-content;
     text-align: center;
 }
+#question_div_sequence {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
