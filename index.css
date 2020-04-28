@@ -44,3 +44,15 @@
 #credit {
     font-size: medium;
 }
+#submit {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+#error_avatar {
+    position: absolute;
+    bottom: 150px;
+    right: 220px;
+    color: red;
+    font-size: large;
+}

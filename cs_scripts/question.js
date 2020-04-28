@@ -1,5 +1,6 @@
 class question {
     questionDiv = null;
+    countDiv = null;
     answersDiv = null;
     answerDiv = [];
     begin ()
@@ -8,7 +9,12 @@ class question {
         if ( this.questionDiv == null )
         {            document.body.innerHTML = "";
             this.questionDiv = document.createElement("div");
+            this.questionDiv.id = "question_div"
             this.answersDiv = document.createElement("div");
+            this.answersDiv.id = "answers_div"
+            this.countDiv = document.createElement("div");
+            this.countDiv.id = "count_div"
+            document.body.appendChild( this.countDiv );
             document.body.appendChild( this.questionDiv );
             document.body.appendChild( this.answersDiv );
         }
@@ -25,8 +31,8 @@ class question {
                 console.log( data )
                 Game.questionId = parseInt(data[0]["id"]) + 1;
                 Game.questionCount = data[1];
-                Game.question.questionDiv.innerText = data[0]["question"] + " ( "+Game.questionId+" / "+Game.questionCount+" ) ";
-
+                Game.question.questionDiv.innerText = data[0]["question"]
+                Game.question.countDiv.innerText = Game.questionId+" / "+Game.questionCount
                 if ( Game.question.answerDiv.length > 0 )
                 {
                     for (const answerDiv of Game.question.answerDiv) {

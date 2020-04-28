@@ -20,6 +20,7 @@ class leaderboard {
     {
         let tableRow = document.createElement("tr")
         tableRow.className = "leaderboard_entry"
+        
         let rankcell = document.createElement("td")
         let namecell = document.createElement("td")
         let avatarcell = document.createElement("td")
