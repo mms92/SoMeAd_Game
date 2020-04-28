@@ -40,7 +40,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET" )
     $action = $segment[ 4 ];
     if ( $action == "leaderboard" )
     {
-        if ( isset($_REQUEST["id"]) ) )
+        if ( isset($_REQUEST["id"]) )
         {
             echo json_encode( $db->getLeaderBoardAround($_REQUEST["id"]) );
         }
