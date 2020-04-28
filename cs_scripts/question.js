@@ -42,7 +42,7 @@ class question {
                 }
 
                 for (const answerText of data[2] ) {
-                    var answerDiv = document.createElement("p");
+                    var answerDiv = document.createElement("div");
                     answerDiv.className = "answers"
                     answerDiv.innerHTML = "<span class=answer>"+answerText.answer+"</span>";
                     answerDiv.onclick = function()
