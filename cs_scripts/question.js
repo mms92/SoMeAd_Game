@@ -31,7 +31,7 @@ class question {
                 console.log( data )
                 Game.questionId = parseInt(data[0]["id"]) + 1;
                 Game.questionCount = data[1];
-                Game.question.questionDiv.innerText = data[0]["question"]
+                Game.question.questionDiv.innerHTML = "<span id=question>"+data[0]["question"]+"</span>"
                 Game.question.countDiv.innerText = Game.questionId+" / "+Game.questionCount
                 if ( Game.question.answerDiv.length > 0 )
                 {
@@ -44,7 +44,7 @@ class question {
                 for (const answerText of data[2] ) {
                     var answerDiv = document.createElement("p");
                     answerDiv.className = "answers"
-                    answerDiv.innerText = answerText.answer;
+                    answerDiv.innerHTML = "<span class=answer>"+answerText.answer+"</span>";
                     answerDiv.onclick = function()
                     {
                         Game.question.sendAnswer(answerText.id)
