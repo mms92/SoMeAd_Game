@@ -39,6 +39,7 @@ class menu {
             if ( this.errorDiv == null )
             {
                 this.errorDiv = document.createElement("div")
+                this.errorDiv.id = "error_avatar"
                 document.body.appendChild( this.errorDiv )
             }
             this.errorDiv.innerText = "vous n'avez pas choisi d'avatar"
