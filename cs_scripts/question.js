@@ -71,7 +71,6 @@ class question {
                         {
                             element.style.color = "rgb(255,0,0)";
                         }
-                        console.log( element.style );
                     }
                 }
                 if ( Game.questionId < Game.questionCount )
